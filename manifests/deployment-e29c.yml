@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "aaaaabugbashprovsvc-acf3"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "aaaaabugbashprovsvc-acf3"
+  template:
+    metadata:
+      labels:
+        app: "aaaaabugbashprovsvc-acf3"
+    spec:
+      containers:
+        - name: "aaaaabugbashprovsvc-acf3"
+          image: "diaggarwregistry.azurecr.io/aaaaabugbashprovsvc2ed0"
+          ports:
+          - containerPort: 80
