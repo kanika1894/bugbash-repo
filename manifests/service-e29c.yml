@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: "aaaaabugbashprovsvc-acf3"
+    labels:
+        app: "aaaaabugbashprovsvc-acf3"
+spec:
+    type: ClusterIP
+    ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+    selector:
+        app: "aaaaabugbashprovsvc-acf3"
