@@ -1,62 +1,67 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-08-01/managementGroupDeploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "targetMG": {
+        "webAppName": {
             "type": "string",
+            "defaultValue": "[concat('Node-', uniqueString(resourceGroup().name, utcNow('F')))]",
             "metadata": {
-                "description": "Target Management Group"
+                "description": "That name is the name of our application. It has to be unique.Type a name followed by your resource group name. (<name>-<resourceGroupName>)"
             }
         },
-        "allowedLocations": {
-            "type": "array",
-            "defaultValue": [
-                "australiaeast",
-                "australiasoutheast",
-                "australiacentral"
-            ],
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
             "metadata": {
-                "description": "An array of the allowed locations, all other locations will be denied by the created policy."
+                "description": "Location for all resources."
             }
         }
     },
     "variables": {
-        "mgScope": "[tenantResourceId('Microsoft.Management/managementGroups', parameters('targetMG'))]",
-        "policyDefinition": "LocationRestriction"
+        "alwaysOn": false,
+        "sku": "Free",
+        "skuCode": "F1",
+        "workerSize": "0",
+        "workerSizeId": "0",
+        "numberOfWorkers": "1",
+        "linuxFxVersion": "NODE|lts",
+        "hostingPlanName": "[concat('hpn-', resourceGroup().name)]"
     },
     "resources": [
         {
-            "type": "Microsoft.Authorization/policyDefinitions",
-            "name": "[variables('policyDefinition')]",
-            "apiVersion": "2019-09-01",
+            "apiVersion": "2020-06-01",
+            "name": "[parameters('webAppName')]",
+            "type": "Microsoft.Web/sites",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms/', variables('hostingPlanName'))]"
+            ],
             "properties": {
-                "policyType": "Custom",
-                "mode": "All",
-                "parameters": {
+                "name": "[parameters('webAppName')]",
+                "siteConfig": {
+                    "linuxFxVersion": "[variables('linuxFxVersion')]",
+                    "alwaysOn": "[variables('alwaysOn')]"
                 },
-                "policyRule": {
-                    "if": {
-                        "not": {
-                            "field": "location",
-                            "in": "[parameters('allowedLocations')]"
-                        }
-                    },
-                    "then": {
-                        "effect": "deny"
-                    }
-                }
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+                "clientAffinityEnabled": false
             }
         },
         {
-            "type": "Microsoft.Authorization/policyAssignments",
-            "name": "location-lock",
-            "apiVersion": "2019-09-01",
-            "dependsOn": [
-                "[variables('policyDefinition')]"
-            ],
+            "apiVersion": "2020-06-01",
+            "name": "[variables('hostingPlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[parameters('location')]",
+            "kind": "linux",
+            "sku": {
+                "Tier": "[variables('sku')]",
+                "Name": "[variables('skuCode')]"
+            },
             "properties": {
-                "scope": "[variables('mgScope')]",
-                "policyDefinitionId": "[extensionResourceId(variables('mgScope'), 'Microsoft.Authorization/policyDefinitions', variables('policyDefinition'))]"
+                "name": "[variables('hostingPlanName')]",
+                "workerSize": "[variables('workerSize')]",
+                "workerSizeId": "[variables('workerSizeId')]",
+                "numberOfWorkers": "[variables('numberOfWorkers')]",
+                "reserved": true
             }
         }
     ]
