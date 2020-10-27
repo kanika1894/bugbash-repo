@@ -1,0 +1,22 @@
+on: [push]
+name: AzureLoginSample
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - uses: kpTestOrg/ARMtesting@master
+      id: deploy
+      with:
+        scope: resourcegroup
+        resourceGroupName: kptest
+        subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
+        templates: examples/template/template.json
+        parameters: examples/template/parameters.json
+        
+    - run: echo ${{ steps.deploy.outputs.containerName }}    
