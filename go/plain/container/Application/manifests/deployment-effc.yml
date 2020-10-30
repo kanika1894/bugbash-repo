@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "aaaatiwarishubaks-effc"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "aaaatiwarishubaks-effc"
+  template:
+    metadata:
+      labels:
+        app: "aaaatiwarishubaks-effc"
+    spec:
+      containers:
+        - name: "aaaatiwarishubaks-effc"
+          image: "abcde123.azurecr.io/aaaatiwarishubakseffc"
+          ports:
+          - containerPort: 80
