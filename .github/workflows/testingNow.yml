@@ -10,7 +10,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: Azure/arm-deploy@v1
+    - uses: Azure/arm-deploy@v1.2
       id: deploy
       with:
         scope: subscription
