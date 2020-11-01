@@ -13,10 +13,7 @@ jobs:
     - uses: Azure/arm-deploy@v1
       id: deploy
       with:
-        scope: resourcegroup
-        resourceGroupName: kptest
+        scope: subscription
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
         template: examples/template/template.json
         parameters: examples/template/parameters.json
-        
-    - run: echo ${{ steps.deploy.outputs.containerName }}    
