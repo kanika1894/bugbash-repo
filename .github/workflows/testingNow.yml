@@ -27,4 +27,4 @@ jobs:
         resourcegroupname: newRG
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
         template: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-cosmosdb-webapp/azuredeploy.json
-        parameters: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-cosmosdb-webapp/azuredeploy.parameters.json
+        parameters: examples/template/webAppParam.json
