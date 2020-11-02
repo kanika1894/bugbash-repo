@@ -20,11 +20,20 @@ jobs:
 #         parameters: examples/template/parameters.json
         
         
+#     - uses: Azure/arm-deploy@v1
+#       id: deploy2
+#       with:
+#         scope: resourcegroup
+#         resourcegroupname: newRG
+#         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
+#         template: examples/template/webapp.json
+#         parameters: examples/template/webAppParam.json
+
     - uses: Azure/arm-deploy@v1
       id: deploy2
       with:
         scope: resourcegroup
         resourcegroupname: newRG
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
-        template: examples/template/webapp.json
-        parameters: examples/template/webAppParam.json
+        template: examples/template/webapplinux.json
+        parameters: examples/template/linuxwebappparam.json
