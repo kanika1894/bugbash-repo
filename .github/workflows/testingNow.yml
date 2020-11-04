@@ -36,4 +36,4 @@ jobs:
         resourcegroupname: newRG
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
         template: examples/template/webapplinux.json
-        parameters: examples/template/linuxwebappparam.json webAppName=ovvv - overriden
+        parameters: examples/template/linuxwebappparam.json webAppName=ovvv-overriden
