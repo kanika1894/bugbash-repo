@@ -27,7 +27,7 @@ jobs:
 #         resourcegroupname: newRG
 #         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
 #         template: examples/template/webapp.json
-#         parameters: examples/template/webAppParam.json
+#         parameters: examples/template/webAppParam.json applicationName=overridenname -overriden
 
     - uses: Azure/arm-deploy@v1
       id: deploy2
@@ -36,4 +36,4 @@ jobs:
         resourcegroupname: newRG
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
         template: examples/template/webapplinux.json
-        parameters: examples/template/linuxwebappparam.json
+        parameters: examples/template/linuxwebappparam.json webAppName=ovvv - overriden
