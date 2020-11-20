@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "democluster-b65d"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "democluster-b65d"
+  template:
+    metadata:
+      labels:
+        app: "democluster-b65d"
+    spec:
+      containers:
+        - name: "democluster-b65d"
+          image: "kapasrijkubacr.azurecr.io/democlusterb65d"
+          ports:
+          - containerPort: 80
