@@ -42,9 +42,11 @@ jobs:
           inlineScript: |
                         echo "hi"
                         echo $keyname
-                        echo $CONTAINER_TEMP_DIRECTORY
+                        echo ${CONTAINER_TEMP_DIRECTORY}
                         echo "hb"
-                        echo $TEMP_DIRECTORY
+                        echo ${TEMP_DIRECTORY}
+                        echo ${GITHUB_WORKSPACE}
+                        echp $GITHUB_WORKSPACE
 
 #           # Azure CLI version to be used to execute the script. If not provided, latest version is used
 #           azcliversion: # optional, default is latest
