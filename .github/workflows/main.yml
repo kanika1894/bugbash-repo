@@ -45,8 +45,7 @@ jobs:
                         echo $keyname
                         echo ${CONTAINER_TEMP_DIRECTORY}
                         echo "hb"
-                        echo ${CONTAINER_WORKSPACE}
-                        echo $GITHUB_WORKSPACE
+                        echo $CONTAINER_WORKSPACE
 
 
 #           # Azure CLI version to be used to execute the script. If not provided, latest version is used
