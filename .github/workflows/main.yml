@@ -33,6 +33,7 @@ jobs:
       - name: Run a multi-line script
         run: |
               echo $GITHUB_WORKSPACE
+              echo $TEMP_DIRECTORY
               echo $GITHUB_ENV
           
 #       - name: Azure CLI Action
