@@ -45,7 +45,7 @@ jobs:
                         echo $keyname
                         echo ${CONTAINER_TEMP_DIRECTORY}
                         echo "hb"
-                        echo ${TEMP_DIRECTORY}
+                        echo ${CONTAINER_WORKSPACE}
                         echo $GITHUB_WORKSPACE
 
 
