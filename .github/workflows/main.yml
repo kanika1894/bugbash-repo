@@ -32,7 +32,7 @@ jobs:
 #               echo $GITHUB_ENV
 #               echo $CONTAINER_TEMP_DIRECTORY
       - name: set variable
-          run:|
+        run: |
               echo "keyname=keyvalue" >> $GITHUB_ENV
           
       - name: Azure CLI Action
