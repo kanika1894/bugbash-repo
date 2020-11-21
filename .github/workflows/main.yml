@@ -34,8 +34,8 @@ jobs:
               echo $keyname
               echo ${TEMP_DIRECTORY}
               echo "hb"
-              echo ${CONTAINER_TEMP_DIRECTORY}
-              echo $GITHUB_WORKSPACE
+              echo $GITHUB_ENV
+
           
       - name: Azure CLI Action
         uses: kanika1894/cli@v1.0.0
