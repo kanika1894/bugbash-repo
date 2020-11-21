@@ -35,6 +35,7 @@ jobs:
               echo ${TEMP_DIRECTORY}
               echo "hb"
               echo ${CONTAINER_TEMP_DIRECTORY}
+              echo $GITHUB_WORKSPACE
           
       - name: Azure CLI Action
         uses: Azure/cli@v1.0.0
