@@ -36,10 +36,10 @@ jobs:
               echo $GITHUB_ENV
               echo $CONTAINER_TEMP_DIRECTORY
           
-#       - name: Azure CLI Action
-#         uses: Azure/cli@v1.0.0
-#         with:
-#           # Specify the script here
-#           inlineScript: 
+      - name: Azure CLI Action
+        uses: Azure/cli@v1.0.0
+        with:
+          # Specify the script here
+          inlineScript: echo $TEMP_DIRECTORY
 #           # Azure CLI version to be used to execute the script. If not provided, latest version is used
 #           azcliversion: # optional, default is latest
