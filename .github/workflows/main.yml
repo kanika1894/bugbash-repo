@@ -38,7 +38,7 @@ jobs:
 
           
       - name: Azure CLI Action
-        uses: kanika1894/cloneofcli@main
+        uses: kanika1894/cloneofcli@master
         with:
           # Specify the script here
           inlineScript: |
