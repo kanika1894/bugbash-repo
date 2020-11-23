@@ -27,16 +27,14 @@ jobs:
       - name: set variable
         run: |
               echo "keyname=keyvalue" >> $GITHUB_ENV
+              echo "keyname2=nextvar" >> $GITHUB_ENV
               
       
       - name: print variable
         run: |
               echo $keyname
-              echo ${TEMP_DIRECTORY}
-              echo "hb"
-              echo $GITHUB_ENV
-
-          
+              echo $keyname2
+      
       - name: Azure CLI Action
         uses: kanika1894/cloneofcli@master
         with:
@@ -46,6 +44,11 @@ jobs:
                         echo ${GITHUB_WORKSPACE}
                         echo "hb"
                         echo $TEMP_DIRECTORY
+                        echo "keyname3=nextvar" >> $GITHUB_ENV
+                        
+      - name: print variable2
+        run: |
+              echo $keyname3
 
 
 #           # Azure CLI version to be used to execute the script. If not provided, latest version is used
