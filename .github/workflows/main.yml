@@ -42,9 +42,7 @@ jobs:
           inlineScript: |
                         echo $keyname
                         echo ${GITHUB_WORKSPACE}
-                        echo "hb"
-                        echo $TEMP_DIRECTORY
-                        echo "keyname3=nextvar3" >> $GITHUB_ENV
+                        echo $keyname2
                         
       - name: print variable2
         run: |
