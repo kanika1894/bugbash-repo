@@ -43,7 +43,7 @@ jobs:
           # Specify the script here
           inlineScript: |
                         echo $keyname
-                        echo ${CONTAINER_TEMP_DIRECTORY}
+                        echo ${GITHUB_WORKSPACE}
                         echo "hb"
                         echo $TEMP_DIRECTORY
 
