@@ -27,7 +27,7 @@ jobs:
       - name: set variable
         run: |
               echo "keyname=keyvalue" >> $GITHUB_ENV
-              echo "keyname2=nextvar" >> $GITHUB_ENV
+              echo "keyname2=nextvar2" >> $GITHUB_ENV
               
       
       - name: print variable
@@ -44,7 +44,7 @@ jobs:
                         echo ${GITHUB_WORKSPACE}
                         echo "hb"
                         echo $TEMP_DIRECTORY
-                        echo "keyname3=nextvar" >> $GITHUB_ENV
+                        echo "keyname3=nextvar3" >> $GITHUB_ENV
                         
       - name: print variable2
         run: |
