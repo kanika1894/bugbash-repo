@@ -42,12 +42,14 @@ jobs:
         with:
           # Specify the script here
           inlineScript: |
+                      echo $keyname2
                       echo $GITHUB_ENV
+                      echo "keyname3=nextvar3" >> $GITHUB_ENV
                         
-#       - name: print variable2
-#         run: |
-#               echo $keyname3
-
+      - name: print variable2
+        run: |
+              echo $keyname3
+              echo $GITHUB_ENV
 
 #           # Azure CLI version to be used to execute the script. If not provided, latest version is used
 #           azcliversion: # optional, default is latest
