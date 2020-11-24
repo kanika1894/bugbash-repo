@@ -41,7 +41,7 @@ jobs:
           # Specify the script here
           inlineScript: |
                         echo $keyname
-                        echo ${GITHUB_WORKSPACE}
+                        echo $TEMP_DIRECTORY
                         echo $keyname2
                         
       - name: print variable2
