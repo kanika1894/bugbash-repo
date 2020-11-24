@@ -26,30 +26,28 @@ jobs:
 
       - name: set variable
         run: |
-              echo "keyname=keyvalue" >> $GITHUB_ENV
-              echo "keyname2=nextvar2" >> $GITHUB_ENV
-            
-              
-      
-      - name: print variable
-        run: |
-              echo $keyname
-              echo $keyname2
               echo $GITHUB_ENV
+              echo "setting var1"
+              echo "keyname=value1" >> $GITHUB_ENV
       
       - name: Azure CLI Action
         uses: kanika1894/cloneofcli@master
         with:
           # Specify the script here
           inlineScript: |
-                      echo $keyname2
+                      echo "in cli action"
+                      echo "print var1 set in prev action"
+                      echo $keyname
+                      echo "print github_env"
                       echo $GITHUB_ENV
-                      echo "keyname3=nextvar3" >> $GITHUB_ENV
+                      echo "set var2"
+                      echo "keyname2=var2" >> $GITHUB_ENV
+                      echo "action ends"
                         
       - name: print variable2
         run: |
-              echo $keyname3
-              echo $GITHUB_ENV
+              echo "print var2"
+              echo $keyname2
 
 #           # Azure CLI version to be used to execute the script. If not provided, latest version is used
 #           azcliversion: # optional, default is latest
