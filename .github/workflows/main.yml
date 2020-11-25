@@ -29,8 +29,7 @@ jobs:
               echo $GITHUB_ENV
               echo "setting var1"
               echo "keyname=value1" >> $GITHUB_ENV
-      - name: echo command
-        run: echo $GITHUB_ENV
+
       
       - name: Azure CLI Action
         uses: kanika1894/cloneofcli@master
