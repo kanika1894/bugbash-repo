@@ -39,8 +39,6 @@ jobs:
                       echo "in cli action"
                       echo "print var1 set in prev action"
                       echo $keyname
-                      echo "print github_env"
-                      echo $GITHUB_ENV
                       echo "set var2"
                       echo $GITHUB_WORKSPACE
                       echo "action ends"
