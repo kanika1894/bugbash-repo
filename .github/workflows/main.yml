@@ -40,7 +40,7 @@ jobs:
                       echo "print var1 set in prev action"
                       echo $keyname
                       echo "set var2"
-                      echo $GITHUB_WORKSPACE
+                      echo "keyname2=value2" >> $GITHUB_ENV
                       echo "action ends"
                         
       - name: print variable2
