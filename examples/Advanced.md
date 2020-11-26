@@ -1,4 +1,4 @@
-# Advanced example on how to use this Action
+# Advanced example on how to use this Action updated
 In this exmaple we deploy 2 templates (for the sake of the example the same template) but the second one depends on the first one as we need first the output of first one and second we need to override a parameter in the second template.   
 Our template has two outputs `location` and `containerName`. But we are only interested in `containerName`, the first template will output that one and the second one requires that and appends `-overriden` so we can see it got overriden.
 
