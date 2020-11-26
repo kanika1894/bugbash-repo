@@ -32,7 +32,7 @@ jobs:
 
       
       - name: Azure CLI Action
-        uses: kanika1894/cloneofcli@master
+        uses: azure/cli@wftest
         with:
           # Specify the script here
           inlineScript: |
