@@ -26,7 +26,8 @@ jobs:
       
       - name: Azure Login
         uses: Azure/login@v1.1
-        with: ${{ secrets.AZURE_CREDENTIALS }}
+        with: 
+            credentials: ${{ secrets.AZURE_CREDENTIALS }}
         
       - name: Azure CLI Action
         uses: azure/cli@v1
