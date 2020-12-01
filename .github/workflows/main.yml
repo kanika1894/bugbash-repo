@@ -22,8 +22,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - run: echo "rg=kpnewrgnow" > $GITHUB_ENV
-      
       - name: Azure Login
         uses: Azure/login@v1.1
         with: 
@@ -34,7 +32,7 @@ jobs:
         with:
           # Specify the script here
           inlineScript: |
-                      az group create -l westus -n $rg
+                      az group create -l westus -n testResourceGroup
                         
       - name: Deploy Azure Resource Manager (ARM) action
         uses: Azure/arm-deploy@v1
@@ -43,7 +41,7 @@ jobs:
           scope: resourcegroup
           # Provide the Id of the subscription which should be used, only required for resource Group or Subscription deployments.
           subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
-          resourceGroupName: $rg
+          resourceGroupName: testResourceGroup
           deploymentMode: complete
           # Specify the path or URL to the Azure Resource Manager template.
           template: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-webapp-basic-linux/azuredeploy.json
