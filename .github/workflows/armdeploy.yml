@@ -2,6 +2,22 @@
 on: [push]
 
 name: AzureCLISample
+env:
+  RESOURCEGROUPNAME: "nodeplainkubedb3-anupadh-rg"
+  EXISTINGRESOURCEGROUPNAME: "node4kubetest1-anand-rg"
+  SUBSCRIPTIONID: "7489b9b9-8abe-4b02-a0d9-f09f368df55f"
+  IMAGENAME: "nodeplainkubedb3anupadh572f"
+  REGISTRYSKU: "Standard"
+  REGISTRYNAME: "nodeplainkubedb3anupadhacr"
+  REGISTRYLOCATION: "South Central US"
+  EXISTINGCLUSTERID: "/subscriptions/7489b9b9-8abe-4b02-a0d9-f09f368df55f/resourcegroups/node4kubetest1-anand-rg/providers/Microsoft.ContainerService/managedClusters/node4kubetest1-anand"
+  EXISTINGCLUSTERNAME: "node4kubetest1-anand"
+  APPINSIGHTSLOCATION: "East US"
+  DATABASEACCOUNTID: "nodeplainkubedb3-anupadh"
+  DATABASELOCATION: "eastasia"
+  HTTPSAPPLICATIONROUTINGENABLED: false
+  KUBERNETESAPI: "apps/v1"
+  NAMESPACE: "nodeplainkubedb3anupadhe2f9"
 
 jobs:
 
@@ -22,8 +38,8 @@ jobs:
         # Provide the Id of the subscription which should be used, only required for resource Group or Subscription deployments.
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
         # Provide the name of a resource group, only required for resource Group deployments.
-        resourceGroupName: kptestrg
-        template: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-webapp-basic-linux/azuredeploy.json
+        resourceGroupName: ${{ env.RESOURCEGROUPNAME }}
+        template: ./examples/templates/akstemp.json
         # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
         deploymentMode: validate
-        parameters: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-webapp-basic-linux/azuredeploy.parameters.json
+        parameters: applicationInsightsName="${{ env.EXISTINGCLUSTERNAME }}" clusterId="${{ env.EXISTINGCLUSTERID }}" appInsightsLocation="${{ env.APPINSIGHTSLOCATION }}" databaseAccountId="${{ env.DATABASEACCOUNTID }}" databaseAccountLocation="${{ env.DATABASELOCATION }}"
