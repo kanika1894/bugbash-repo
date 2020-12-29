@@ -20,15 +20,22 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: Azure Login
-        uses: Azure/login@v1.1
-        with: 
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
+#       - name: Azure Login
+#         uses: Azure/login@v1.1
+#         with: 
+#             creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-      - name: Azure CLI Action
-        uses: azure/cli@v1
-        with:
-          # Specify the script here
-          inlineScript: |
-                      az group create -l westus -n testResourceGroup
+      - name: install yarn
+        run: brew install yarn
+     
+      - name: install dhis cli
+        run: yarn global add @dhis/cli
+      
+      - name: seed db
+        run: d2 cluster up 2.35.0 --db-version 2.35 --seed
+        
+      - name: print
+        run: echo "okay"
+        
+      
                         
