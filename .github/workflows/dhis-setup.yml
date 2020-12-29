@@ -29,13 +29,10 @@ jobs:
         run: brew install yarn
      
       - name: install dhis cli
-        run: yarn global add @dhis/cli
+        run: yarn global add @dhis2/cli
       
       - name: seed db
         run: d2 cluster up 2.35.0 --db-version 2.35 --seed
         
       - name: print
         run: echo "okay"
-        
-      
-                        
