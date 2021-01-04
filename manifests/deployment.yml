@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "kptestcluster-4ddf"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "kptestcluster-4ddf"
+  template:
+    metadata:
+      labels:
+        app: "kptestcluster-4ddf"
+    spec:
+      containers:
+        - name: "kptestcluster-4ddf"
+          image: "aaaatiwarishubregistry.azurecr.io/kptestcluster"
+          ports:
+          - containerPort: 80
