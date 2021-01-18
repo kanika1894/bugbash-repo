@@ -38,7 +38,7 @@ jobs:
         container-registry-password: ${{ secrets.acr_aaaatiwarishubregistry_password }}
         secret-name: kptestclustedockerauth
        
-    - uses: azure/k8s-deploy@v1.2
+    - uses: azure/k8s-deploy@v1.3
       with:
         namespace: kptestclusterb042
         manifests: |
