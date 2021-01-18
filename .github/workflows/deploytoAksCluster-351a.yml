@@ -1,0 +1,50 @@
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - uses: azure/docker-login@v1
+      with:
+        login-server: kapasrijkubacr.azurecr.io
+        username: ${{secrets.acr_kapasrijkubacr_username}}
+        password: ${{secrets.acr_kapasrijkubacr_password}}
+    
+    - name: Build and push image to ACR
+      id: build-image
+      run: |
+        docker build "$GITHUB_WORKSPACE/node/plain/kubernetes/Application" -f  "node/plain/kubernetes/Application/Dockerfile" -t kapasrijkubacr.azurecr.io/democluster351a:${{ github.sha }}
+        docker push kapasrijkubacr.azurecr.io/democluster351a:${{ github.sha }}
+    
+    - uses: azure/k8s-set-context@v1
+      with:
+         kubeconfig: ${{secrets.aks_democluster_kubeConfig}}
+      id: login
+    
+    - name: Create namespace
+      run: |
+        namespacePresent=`kubectl get namespace | grep democluster351a | wc -l`
+        if [ $namespacePresent -eq 0 ]
+        then
+            echo `kubectl create namespace democluster351a`
+        fi
+
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: democluster351a
+        container-registry-url: kapasrijkubacr.azurecr.io
+        container-registry-username: ${{secrets.acr_kapasrijkubacr_username}}
+        container-registry-password: ${{secrets.acr_kapasrijkubacr_password}}
+        secret-name: democlusterdockerauth
+       
+    - uses: azure/k8s-deploy@v1.2
+      with:
+        namespace: democluster351a
+        manifests: |
+          node/plain/kubernetes/Application/manifests/deployment-351a.yml
+          node/plain/kubernetes/Application/manifests/service-351a.yml
+        images: |
+          kapasrijkubacr.azurecr.io/democluster351a:${{ github.sha }}
+        imagepullsecrets: |
+          democlusterdockerauth
