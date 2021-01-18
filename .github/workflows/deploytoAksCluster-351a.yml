@@ -38,7 +38,7 @@ jobs:
         container-registry-password: ${{secrets.acr_kapasrijkubacr_password}}
         secret-name: democlusterdockerauth
        
-    - uses: azure/k8s-deploy@v1.2
+    - uses: azure/k8s-deploy@v1.3
       with:
         namespace: democluster351a
         manifests: |
