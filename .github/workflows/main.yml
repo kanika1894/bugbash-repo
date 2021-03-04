@@ -42,6 +42,5 @@ jobs:
           resourceGroupName: testResourceGroup
           deploymentMode: complete
           # Specify the path or URL to the Azure Resource Manager template.
-          template: examples/template/webapplinux.json
-          parameters: |
-                  webAppName=qwerty
+          template: examples/template/webapp.json
+          parameters: applicationName=qwerty location=East US
