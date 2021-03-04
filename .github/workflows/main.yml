@@ -43,4 +43,5 @@ jobs:
           deploymentMode: complete
           # Specify the path or URL to the Azure Resource Manager template.
           template: examples/template/webapplinux.json
-          parameters: examples/template/linuxwebappparam.json -webAppName=qwerty
+          parameters: |
+                  webAppName=qwerty
