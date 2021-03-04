@@ -43,6 +43,4 @@ jobs:
           deploymentMode: complete
           # Specify the path or URL to the Azure Resource Manager template.
           template: examples/template/webapp.json
-          parameters: |
-                  applicationName=qwerty
-                  location="East US"
+          parameters:  applicationName=qwertery location="East US"
